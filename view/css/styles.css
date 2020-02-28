@@ -1,0 +1,23 @@
+html {
+    margin-top: 5%;
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-bottom: 5%;
+    background: black;
+}
+section{
+    text-align: center;
+    padding-bottom: 10%;
+    padding-top: 5%;
+    background: aliceblue;
+}
+#title{
+    margin-bottom: 20%;
+}
+#title-tutorial{
+ color: blue;   
+}
+
+footer {   
+    background: gray;
+}
