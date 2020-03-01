@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="../view/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="../vendor/bootstrap-4.0.0-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <script src="../vendor/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/0eb97166be.js" crossorigin="anonymous"></script>
+    <title>Nim: El Juego</title>
+</head>
+
+<body>
+    <section>
+        <h1 id="title-gamemode"><i class="fas fa-table"> Nim: Modo de Juego</i></h1>
+        <hr/>
+
+        <div class="game-selection-btn">
+            <h3>¿Contra quien desea jugar?</h3>
+            <br/>
+            <p><button type="button" class="btn btn-outline-primary btn-lg" id="btn-multiplayer"><i class="fas fa-people-carry">
+                        MultiJugador</i></button></p>
+            <p><button type="button" class="btn btn-outline-info btn-lg" id="btn-cpu"><i class="fas fa-microchip">
+                        CPU</i></button></p>
+        </div>
+        <br/>
+        <div class="game-selection-rbtn">
+            <strong><p>Modalidad de Juego</p></strong>
+            
+            <label for="gameone">Modo 1</label>
+            <input type="radio" id="gameone" class="sel" checked /><br>
+
+            <label for="gametwo">Modo 2</label>
+            <input type="radio" id="gametwo" class="sel"/> <br>
+
+            <label for="gamethree">Modo 3</label>
+            <input type="radio" id="gamethree" class="sel"/> <br>
+        </div>
+
+        <hr>
+
+        <p><button type="button" class="btn btn-outline-warning btn-lg" id="comeback"><i class="fas fa-undo-alt">
+            Regresar</i></button></p>
+
+    </section>
+    <footer class="page-footer" id="footer">
+
+
+        <div class="footer-copyright text-center py-3">© 2020 Copyright: Jose Marín - Yohel Pérez para LyR III UdeA
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <script src="../controller/gameModeController.js"></script>
+</body>
+
+</html>
