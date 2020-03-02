@@ -46,7 +46,7 @@ document.getElementById('gamethree').addEventListener('click', function (e) {
  * Navega hacia la opción del juego elegida.
  */
 function gameNavOpt() {
-    debugger;
+    
     items = document.getElementsByClassName('sel');
     for (let index = 0; index < items.length; index++) {
         if (items[index].checked) {

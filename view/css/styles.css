@@ -21,3 +21,21 @@ section{
 footer {   
     background: gray;
 }
+
+table{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border: 1px solid black;
+    width: 90%;
+    height: 70%;
+}
+
+table tr td {
+    color: aliceblue;
+    width: 2%;
+    height: 2%;
+}
+
+#board{
+    margin-left:10%;
+}
