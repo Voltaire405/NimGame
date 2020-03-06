@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="../view/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="../vendor/bootstrap-4.0.0-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <script src="../vendor/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>    
+    <script src="https://kit.fontawesome.com/0eb97166be.js" crossorigin="anonymous"></script>
+    <title>Nim: Inicio</title>
+</head>
+
+<body>
+    <section>
+        <h2>Nim: Modalidad 3</h2>
+        <hr>
+        <div id="board">
+            <div class="row">
+                <span><label for="taken">Piezas retiradas:</label></span>
+                <input type="number" disabled id="taken" style="margin-left: 2%;"/>
+                
+                <label for="playing" style="margin-left: 2%;">Turno: </label>
+                <input type="text" id="playing" style="margin-left: 2%;" disabled>
+            </div>            
+            <br>
+            
+            <table id="table">
+
+            </table>
+          
+           
+        </div>
+        <hr>
+        <p><button type="button" class="btn btn-outline-danger btn-lg" id="exit"><i class="fas fa-sign-out-alt">
+            Salir</i></button></p>
+    </section>
+    <footer class="page-footer" id="footer">
+
+
+        <div class="footer-copyright text-center py-3">© 2020 Copyright: Jose Marín - Yohel Pérez para LyR III UdeA            
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <script src="../controller/cpuGame.js"></script>
+    <script src="../controller/inGame3Controller.js"></script>
+</body>
+
+</html>

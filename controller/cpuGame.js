@@ -35,7 +35,7 @@ function tablaBinario(tabla) {
  * @returns {Array} El primer elemento representa la fila donde se retirarán las piezas y el segundo
  * la cantidad de piezas.
  */
-function aplicarEstrategia(tabla, tablaBinario) {
+function aplicarEstrategia3(tabla, tablaBinario) {
     var resultado = tablaBinario[0].slice();
     console.log(tablaBinario);
 
@@ -84,3 +84,91 @@ function aplicarEstrategia(tabla, tablaBinario) {
     }
 
 }
+
+/**
+ * Indica la cantidad de piezas que se deben remover de una fila específica para realizar
+ * una jugada ganadora, cuando pierde quien quita la última pieza
+ * @param {Array} tabla Arreglo que contiene la cantidad de elementos en cada fila,
+ * cada indice representa la fila y el contenido representa el número de piezas presentes. 
+ * @param {Array} tablaBinario Contiene el número de elementos en cada fila en binario.
+ * @returns {Array} El primer elemento representa la fila donde se retirarán las piezas y el segundo
+ * la cantidad de piezas.
+ */
+function aplicarEstrategia1(tabla, tablaBinario) {
+    movimiento=aplicarEstrategia3(tabla, tablaBinario);
+
+    //evalua si quedarán una cantidad par de filas con una ficha
+    var filasUnaFicha = true;
+    var nFilasUnaFicha = 0;
+    i = 0;
+    while (i < tabla.length && filasUnaFicha == true) {
+        if (i == movimiento[0]) {                //evalua para el caso en el que la fila es la que va a ser modificada
+            switch (tabla[i] - movimiento[1]) {
+                case 1: nFilasUnaFicha += 1;
+                    break;
+                case 0:
+                    break;
+                default:
+                    filasUnaFicha = false;
+            }
+        }
+        else {                       //evalua para el caso de las demás filas
+            switch (tabla[i]) {
+                case 1: nFilasUnaFicha += 1;
+                    break;
+                case 0:
+                    break;
+                default:
+                    filasUnaFicha = false;
+            }
+        }
+        i++;
+    }
+
+    if (nFilasUnaFicha % 2 == 0 && filasUnaFicha == true) {
+        if (tabla[movimiento[0]] - movimiento[1] == 0) {
+            movimiento[1] -= 1;
+        }
+        else {
+            movimiento[1]+=1;
+        }
+    }
+
+    return movimiento;
+}
+
+/**
+ * Indica la cantidad de piezas que se deben remover de una fila específica para realizar
+ * una jugada ganadora, cuando solo se pueden retirar tres fichas máximo por jugada 
+ * y pierde quien quita la última pieza
+ * @param {Array} tabla Arreglo que contiene la cantidad de elementos en cada fila,
+ * cada indice representa la fila y el contenido representa el número de piezas presentes. 
+ * @param {Array} tablaBinario Contiene el número de elementos en cada fila en binario.
+ * @returns {Array} El primer elemento representa la fila donde se retirarán las piezas y el segundo
+ * la cantidad de piezas.
+ */
+function aplicarEstrategia2(tabla, tablaBinario) {
+    var tablaCopia= tabla.slice();
+    var tablaBinarioCopia=tablaBinario.slice();
+    var i=1
+    while(i<=tabla.length){
+        var movimiento=aplicarEstrategia1(tablaCopia, tablaBinarioCopia)
+        if(movimiento[1]<=3){
+            var datoFila=tablaCopia[movimiento[0]];
+            movimiento[0]=tabla.indexOf(datoFila);
+            return movimiento;
+        }
+
+        tablaCopia.push(tablaCopia[0]);
+        tablaCopia.shift();
+        tablaBinarioCopia.push(tablaBinarioCopia[0]);
+        tablaBinarioCopia.shift();
+
+        i++;
+    }
+
+    //busca la fila que más fichas tenga
+    var mayor = Math.max(...tabla);
+    return [tabla.indexOf(mayor), 1];
+}
+

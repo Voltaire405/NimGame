@@ -11,16 +11,7 @@ var players = {
 var whoPlaying = players["playerone"];
 //------------------------------------------------------------------------
 
-/**
- * Obtiene el modo de juego solicitado en una petición get por la url.
- * @returns String  representa el modo de juego elegido: 1, 2, 3
- */
-function getRequestParams() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const mode = urlParams.get('mode');
-    return mode;
-}
+
 
 
 /**
@@ -77,7 +68,7 @@ function createBodyTable(row, col) {
 
                     if (played) {
                         alert("Sólo se puede retirar piezas de una fila a la vez. ¡Presione confirmar para finalizar su turno!");
-                    } else {
+                    } else if(this.style.color != "aliceblue"){
                         let myRow = Number.parseInt(this.attributes["row"].value);
                         let myIndex = Number.parseInt(this.attributes["index"].value);
                         disappearCells(myRow, myIndex);
@@ -122,17 +113,17 @@ function generateRandomPieces(columns) {
     return npieces;
 }
 
-function playVsCpu() {
-    validateEndGame();
-    changeTurn(players["cpu"]);    
+function playVsCpu() {    
+    changeTurn(players["cpu"]);
+    validateEndGame();    
     let binaryTable = tablaBinario(dim);
-    let move = aplicarEstrategia(dim, binaryTable);
+    let move = aplicarEstrategia1(dim, binaryTable);
     setTimeout(function(){
         disappearCells(move[0], dim[move[0]] - move[1]);
-        dim[move[0]] -= move[1]; //Cálculo del numero de piezas retirada.
-        validateEndGame();
+        dim[move[0]] -= move[1]; //Cálculo del numero de piezas retirada.        
         played = false;
-        changeTurn(players["playerone"]);    
+        changeTurn(players["playerone"]);
+        validateEndGame();    
     }, 1000);    
 }
 

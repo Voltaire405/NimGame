@@ -1,10 +1,17 @@
+var OPTIONS = {"multiplayer": 1,
+                "cpu":2
+}
 //Eventos click sobre botones multijugador o cpu
 document.getElementById('comeback').addEventListener('click', function (e) {
     window.location.replace('../index.html');
 });
 
 document.getElementById('btn-cpu').addEventListener('click', function (e) {
-    gameNavOpt();
+    gameNavOpt(OPTIONS["cpu"]);
+});
+
+document.getElementById('btn-multiplayer').addEventListener('click', function (e) {
+    gameNavOpt(OPTIONS["multiplayer"]);
 });
 //
 
@@ -45,12 +52,22 @@ document.getElementById('gamethree').addEventListener('click', function (e) {
 /**
  * Navega hacia la opción del juego elegida.
  */
-function gameNavOpt() {
+function gameNavOpt(opt) {
     
     items = document.getElementsByClassName('sel');
     for (let index = 0; index < items.length; index++) {
         if (items[index].checked) {
-            window.location.replace('../view/ingame.html?mode=' + (index + 1));
+            switch (opt) {
+                case 1:
+                    window.location.replace('../view/inGameMulti' + (index + 1) + '.html');
+                    break;
+                case 2:
+                    window.location.replace('../view/inGame' + (index + 1) + '.html');
+                    break;
+                default:
+                    break;
+            }
+            
             break;
         }
     }
