@@ -37,7 +37,6 @@ function tablaBinario(tabla) {
  */
 function aplicarEstrategia3(tabla, tablaBinario) {
     var resultado = tablaBinario[0].slice();
-    //console.log(tablaBinario);
 
     //calcula suma de cada columna de la matriz binaria
     for (j = 0; j < 5; j++) {
@@ -48,9 +47,11 @@ function aplicarEstrategia3(tabla, tablaBinario) {
 
 
     columna = resultado.indexOf(1);
+
+    //evalua si hay algun 1 en el resultado para decidir que estrategia tomar
     if (columna != -1) {
         var fila;
-        //busca fila en la que hay que retirar fichas
+        //busca fila en la que hay un 1 para retirar fichas
         for (i = tablaBinario.length - 1; i >= 0; i--) {
             if (tablaBinario[i][columna] == 1) {
                 fila = i;
@@ -72,17 +73,12 @@ function aplicarEstrategia3(tabla, tablaBinario) {
         nDecimal = parseInt(nDecimal, 2);
 
         return [fila, tabla[fila] - nDecimal];
-    } else {
-        //busca la fila que más fichas tenga
-        var mayor = tabla[0];
-        for (i = 1; i < tabla.length; i++) {
-            if (tabla[i] > mayor) {
-                mayor = i;
-            }
-        }
-        return [mayor, 1];
     }
-
+    else {
+        //busca la fila que más fichas tenga
+        var mayor = Math.max(...tabla);
+        return [tabla.indexOf(mayor), 1];
+    }
 }
 
 /**
