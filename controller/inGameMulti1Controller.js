@@ -12,8 +12,9 @@ function onclickEvent(cell) {
         disappearCells(myRow, myIndex);
         takenPieces = dim[myRow] - myIndex;
         dim[myRow] -= takenPieces;
-        played = true;
-        playVsCpuMode3();
+        played = true;        
+        changeTurn("multiplayer");
+        validateEndGame();
     }
 }
 

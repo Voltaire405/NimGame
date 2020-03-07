@@ -9,11 +9,12 @@ function onclickEvent(cell) {
     } else if (cell.style.color != "aliceblue") {
         let myRow = Number.parseInt(cell.attributes["row"].value);
         let myIndex = Number.parseInt(cell.attributes["index"].value);
-        disappearCells(myRow, myIndex);
+        disappearCells(myRow, myIndex, 3);
         takenPieces = dim[myRow] - myIndex;
         dim[myRow] -= takenPieces;
         played = true;
-        playVsCpuMode3();
+        changeTurn("multiplayer");
+        validateEndGame();
     }
 }
 
@@ -36,11 +37,6 @@ function onmouseoutEvent(cell) {
     }
     document.getElementById('taken').value = 0;
 }
-
-//Eventos click sobre botones salir
-document.getElementById('exit').addEventListener('click', function (e) {
-    window.location.replace('../index.html');
-});
 
 //variables globales
 var dim = []; //va a contener el indice de cada fila y su número de piezas

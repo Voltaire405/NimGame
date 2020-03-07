@@ -37,7 +37,7 @@ function tablaBinario(tabla) {
  */
 function aplicarEstrategia3(tabla, tablaBinario) {
     var resultado = tablaBinario[0].slice();
-    console.log(tablaBinario);
+    //console.log(tablaBinario);
 
     //calcula suma de cada columna de la matriz binaria
     for (j = 0; j < 5; j++) {
