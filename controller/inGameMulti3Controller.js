@@ -15,6 +15,7 @@ function onclickEvent(cell) {
         played = true;
         validateEndGame();
         changeTurn("multiplayer");
+        played = false;
     }
 }
 

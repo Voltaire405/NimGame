@@ -1,0 +1,79 @@
+/**
+ * Define de manera particular implementación del evento onclick sobre una pieza.
+ * @param {object} cell 
+ */
+function onclickEvent(cell) {
+    let takenPieces;
+    if (played) {
+        alert("Sólo se puede retirar piezas de una fila a la vez. ¡Presione confirmar para finalizar su turno!");
+    } else if (cell.style.color != "aliceblue") {
+        let myRow = Number.parseInt(cell.attributes["row"].value);
+        let myIndex = Number.parseInt(cell.attributes["index"].value);
+        if ((dim[myRow] - myIndex) > 3) {
+            myIndex = dim[myRow] - 3;
+        }
+        disappearCells(myRow, myIndex);
+        takenPieces = dim[myRow] - myIndex;
+        dim[myRow] -= takenPieces;
+        played = true;
+        playVsCpuMode2();
+    }
+}
+
+/**
+ * Selecciona a lo sumo 3 piezas de la fila correspondiente a la celda indicada.
+ * Pinta de rojo las piezas seleccionadas.
+ * @param {object} cell 
+ */
+function onmouseoverEvent(cell) {
+    let takenPieces;
+    let myRow = Number.parseInt(cell.attributes["row"].value);
+    let myIndex = Number.parseInt(cell.attributes["index"].value);
+    if (dim[myRow] - myIndex > 3) {
+        myIndex = dim[myRow] - 3;
+    }
+    for (let k = myIndex; k < dim[myRow]; k++) {
+        table.rows[myRow].cells[k].style.color = "red";
+    }
+    takenPieces = dim[myRow] - myIndex;
+    document.getElementById('taken').value = takenPieces > 0 ? takenPieces : 0;
+}
+
+/**
+ * Restaura de las piezas seleccionadas su propiedad color.
+ * @param {object} cell 
+ */
+function onmouseoutEvent(cell) {
+    let myRow = Number.parseInt(cell.attributes["row"].value);
+    let myIndex = Number.parseInt(cell.attributes["index"].value);
+    if (dim[myRow] - myIndex > 3) {
+        myIndex = dim[myRow] - 3;
+    }
+    for (let k = myIndex; k < dim[myRow]; k++) {
+        table.rows[myRow].cells[k].style.color = "green";
+    }
+    document.getElementById('taken').value = 0;
+}
+
+//Eventos click sobre botones salir
+document.getElementById('exit').addEventListener('click', function (e) {
+    window.location.replace('../index.html');
+});
+
+//variables globales
+var dim = []; //va a contener el indice de cada fila y su número de piezas
+const nrow = generateRandom(); //inicialmente
+const ncol = generateRandom();
+var played = false;
+var players = {
+    "playerone": "Jugador Uno",
+    "playertwo": "Jugador Dos",
+    "cpu": "CPU"
+}
+var whoPlaying = players["playerone"];
+//------------------------------------------------------------------------
+
+
+createBodyTable(nrow, ncol); //genera tablero
+document.getElementById('taken').value = 0; //inicializo contador de piezas tomadas
+document.getElementById('playing').value = whoPlaying;

@@ -1,3 +1,7 @@
+//SETTINGS 
+var cpuGameTimeElapsed = 200; //Tiempo de respuesta de la maquina.
+//-----------------------
+
 /**
  * Genera número aleatorio en (0 a 25)
  * @returns {Number} rnumber número aleatorio entre 3 y 24 
@@ -26,14 +30,11 @@ function generateRandomPieces(columns) {
 /**
  *Oculta las celdas seleccionadas cambiando su color 
  *al del tablero de juego.
- * @param {Array} myRow Fila de la celda seleccionada
- * @param {Array} myIndex Índice de la columna seleccionada
- * @param {Number} selects Número de celdas a ocultar.
+ * @param {Number} myRow Fila de la celda seleccionada
+ * @param {Number} myIndex Índice de la columna seleccionada 
  */
-function disappearCells(myRow, myIndex, selects) {
-    if (selects != null && selects != undefined && (dim[myRow] - myIndex) > selects) {
-        myIndex = dim[myRow] - selects;
-    }
+function disappearCells(myRow, myIndex) {
+    
     for (let k = myIndex; k < dim[myRow]; k++) {
         table.rows[myRow].cells[k].style.color = "aliceblue";
     }
@@ -63,7 +64,7 @@ function changeTurn(opt) {
             break;
     }
     document.getElementById('playing').value = whoPlaying;
-    played = false;
+    //played = false;
 }
 
 /**
@@ -84,7 +85,7 @@ function validateEndGame() {
 }
 
 function playVsCpuMode1() {    
-    changeTurn(players["cpu"]);
+    changeTurn("cpu");
     validateEndGame();    
     let binaryTable = tablaBinario(dim);
     let move = aplicarEstrategia1(dim, binaryTable);
@@ -92,9 +93,25 @@ function playVsCpuMode1() {
         disappearCells(move[0], dim[move[0]] - move[1]);
         dim[move[0]] -= move[1]; //Cálculo del numero de piezas retirada.        
         played = false;
-        changeTurn(players["playerone"]);
-        validateEndGame();    
-    }, 1000);    
+        changeTurn("cpu");
+        validateEndGame(); 
+        played = false;   
+    }, cpuGameTimeElapsed);    
+}
+
+function playVsCpuMode2() {    
+    changeTurn("cpu");
+    validateEndGame();    
+    let binaryTable = tablaBinario(dim);
+    let move = aplicarEstrategia2(dim, binaryTable);    
+    setTimeout(function(){
+        disappearCells(move[0], dim[move[0]] - move[1], 3);
+        dim[move[0]] -= move[1]; //Cálculo del numero de piezas retirada.        
+        played = false;
+        changeTurn("cpu");
+        validateEndGame();
+        played = false;    
+    }, cpuGameTimeElapsed);    
 }
 
 /**
@@ -111,7 +128,8 @@ function playVsCpuMode3() {
         validateEndGame();
         played = false;
         changeTurn("cpu");
-    }, 1000);
+        played = false;
+    }, cpuGameTimeElapsed);
 }
 
 /**

@@ -57,7 +57,7 @@ const nrow = generateRandom(); //inicialmente
 const ncol = generateRandom();
 var played = false;
 var players = {
-    "playerone": "Jugador 1",
+    "playerone": "Jugador Uno",
     "playertwo": "Jugador Dos",
     "cpu": "CPU"
 }
