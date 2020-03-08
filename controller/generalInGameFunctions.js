@@ -83,6 +83,20 @@ function validateEndGame() {
     }
 }
 
+function playVsCpuMode1() {    
+    changeTurn(players["cpu"]);
+    validateEndGame();    
+    let binaryTable = tablaBinario(dim);
+    let move = aplicarEstrategia1(dim, binaryTable);
+    setTimeout(function(){
+        disappearCells(move[0], dim[move[0]] - move[1]);
+        dim[move[0]] -= move[1]; //Cálculo del numero de piezas retirada.        
+        played = false;
+        changeTurn(players["playerone"]);
+        validateEndGame();    
+    }, 1000);    
+}
+
 /**
  * Realiza los movimientos cálculados con el algoritmo ganador para la modalidad 3
  */

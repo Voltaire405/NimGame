@@ -17,17 +17,25 @@ function onclickEvent(cell) {
     }
 }
 
+/**
+ *Pinta las celdas seleccionadas en la tabla anteriores de la pasada por parámetro de color rojo 
+ * @param {object} cell 
+ */
 function onmouseoverEvent(cell) {
     let takenPieces;
     let myRow = Number.parseInt(cell.attributes["row"].value);
     let myIndex = Number.parseInt(cell.attributes["index"].value);
     for (let k = myIndex; k < dim[myRow]; k++) {
         table.rows[myRow].cells[k].style.color = "red";
-    }
+    } 
     takenPieces = dim[myRow] - myIndex;
     document.getElementById('taken').value = takenPieces > 0 ? takenPieces : 0;
 }
 
+/**
+ * 
+ * @param {object} cell 
+ */
 function onmouseoutEvent(cell) {
     let myRow = Number.parseInt(cell.attributes["row"].value);
     let myIndex = Number.parseInt(cell.attributes["index"].value);
